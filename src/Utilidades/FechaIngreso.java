@@ -1,0 +1,98 @@
+package Utilidades;
+import com.toedter.calendar.JDateChooser;
+import javax.swing.*;
+import java.awt.*;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.concurrent.atomic.AtomicReference;
+
+public class FechaIngreso {
+
+    public FechaIngreso() {
+
+    }
+
+    public static LocalDate fecha() {
+        // Crear un nuevo marco (ventana)
+        JFrame frame = new JFrame("Seleccionar fecha");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Configurar el cierre del programa cuando se cierra la ventana
+        frame.setSize(300, 200); // Establecer el tamaño del marco
+
+        // Crear un nuevo panel principal con disposición GridBagLayout
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new GridBagLayout());
+        frame.add(mainPanel);
+
+        // Configurar restricciones para los componentes dentro del panel
+        GridBagConstraints constraints = new GridBagConstraints();
+
+        // Crear y agregar una etiqueta al panel
+        JLabel label = new JLabel("Seleccione una fecha:");
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.insets = new Insets(10, 10, 10, 10);
+        mainPanel.add(label, constraints);
+
+        // Crear y agregar un JDateChooser (selector de fecha) al panel
+        JDateChooser fecha = new JDateChooser();
+        constraints.gridx = 1;
+        constraints.gridy = 0;
+        constraints.insets = new Insets(10, 10, 10, 10);
+        mainPanel.add(fecha, constraints);
+
+        // Crear y agregar un botón al panel
+        JButton button = new JButton("Guardar fecha");
+        constraints.gridx = 1;
+        constraints.gridy = 1;
+        constraints.insets = new Insets(10, 10, 10, 10);
+        mainPanel.add(button, constraints);
+        AtomicReference<LocalDate> edad = new AtomicReference<>();
+        // Agregar un listener al botón para manejar eventos de clic
+        button.addActionListener(e -> {
+            java.util.Date fechaselect = fecha.getDate(); // Obtener la fecha seleccionada del JDateChooser
+            if (fechaselect != null) {
+                System.out.println("Fecha seleccionada: " + fechaselect);
+                edad.set(LocalDate.ofInstant(fechaselect.toInstant(), ZoneId.systemDefault()));
+                if(verificar(edad.get())) {
+                    JOptionPane.showMessageDialog(null,"Es mayor de edad");
+                    frame.dispose();
+                }else {
+                    JOptionPane.showMessageDialog(null,"No esta en el rango de edad para trabajar");
+                }
+            } else {
+                // Imprimir si no se seleccionó ninguna fecha
+                System.out.println("No se seleccionó ninguna fecha");
+            }
+        });
+
+        // Hacer visible el marco
+        frame.setVisible(true);
+        while (edad.get() == null) {
+            try {
+                Thread.sleep(100); // Esperar 100 milisegundos antes de volver a verificar
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return edad.get();
+    }
+
+    private static boolean verificar(LocalDate fecha) {
+        int edad = calcularEdad(fecha);
+        String menor = "([0-9]|1[0-7])";
+        String mayor = "(9[0-9]{1,2}|1000)";
+        String edadStr = Integer.toString(edad);
+
+        if (edadStr.matches(menor) || edadStr.matches(mayor)) {
+            return false;
+        }
+        return true;
+    }
+
+    private static int calcularEdad(LocalDate fechaNacimiento) {
+        LocalDate fechaActual = LocalDate.now();
+        return Period.between(fechaNacimiento, fechaActual).getYears();
+    }
+}
+

@@ -4,11 +4,15 @@
  */
 package Main;
 
+import Utilidades.FechaIngreso;
+
+import java.time.LocalDate;
+
 public class Principal {
 
 
     public static void main(String[] args) {
-
+        LocalDate x = FechaIngreso.fecha();
     }
     
 }

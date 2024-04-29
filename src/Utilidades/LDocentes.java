@@ -1,12 +1,12 @@
 package Utilidades;
 
-import javax.swing.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 import Docentes.Docente;
+
+import javax.swing.*;
 import java.time.LocalDate;
-import Docentes.Docente_Catedra;
 
 public class LDocentes {
 
