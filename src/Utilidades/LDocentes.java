@@ -3,12 +3,18 @@ package Utilidades;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
-import Docentes.Docente;
+import java.util.TreeSet;
 
+import Docentes.Docente;
 import javax.swing.*;
 import java.time.LocalDate;
 
+
 public class LDocentes {
+
+    private TreeSet<Docente> Catedra;
+    private TreeSet<Docente> Ocasional;
+    private TreeSet<Docente> Completo;
 
     private ArrayList<Docente> arrayCatedra;
     private ArrayList<Docente> arrayOcasional;
@@ -70,5 +76,32 @@ public class LDocentes {
 
     }
 
+    public void IngresarDocente(){
+        
+    }
+
+    public static String ingresotD() {
+        int opcion;
+        boolean salir = false;
+        while (!salir) {
+            String[] options = { "Docente de Tiempo Completo", "Docente Ocasional", "Docente de Catedra" };
+            opcion = JOptionPane.showOptionDialog(null, "Seleccione una opción:", "Tipos de docentes",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+            switch (opcion) {
+                case 0:
+                    return "Docente de Planta";
+
+                case 1:
+                    return "Docente Ocasional";
+
+                case 2:
+                    return "Docente de Catedra";
+                default:
+                    JOptionPane.showMessageDialog(null, "Opción no válida. Intente de nuevo.");
+            }
+        }
+
+        return null;
+    }
 
 }

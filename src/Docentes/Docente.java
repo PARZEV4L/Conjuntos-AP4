@@ -1,7 +1,7 @@
 package Docentes;
 import java.time.LocalDate;
 
-public class Docente {
+public class Docente implements Comparable<Docente>{
     private String Cc;
     private String Nombre;
     private  String Sexo;
@@ -108,6 +108,12 @@ public class Docente {
 
     public void setCc(String cc) {
         Cc = cc;
+    }
+
+
+    @Override
+    public int compareTo(Docente otroDocente) {
+        return this.Nombre.compareTo(otroDocente.Nombre);
     }
 
 }
