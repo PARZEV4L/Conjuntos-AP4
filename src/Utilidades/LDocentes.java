@@ -1,14 +1,15 @@
 package Utilidades;
 
+import java.awt.Dimension;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.TreeSet;
 
 import Docentes.Docente;
 import javax.swing.*;
 import java.time.LocalDate;
-
 
 public class LDocentes {
 
@@ -49,14 +50,19 @@ public class LDocentes {
                 docente.setTitulo(cortarString[8]);
                 switch (op) {
                     case 1:
+                        arrayCompleto.add(docente);
 
                         break;
 
                     case 2:
 
+                        arrayOcasional.add(docente);
+
                         break;
 
                     case 3:
+
+                        arrayCatedra.add(docente);
 
                         break;
                 }
@@ -76,8 +82,8 @@ public class LDocentes {
 
     }
 
-    public void IngresarDocente(){
-        
+    public void IngresarDocente() {
+
     }
 
     public static String ingresotD() {
@@ -102,6 +108,71 @@ public class LDocentes {
         }
 
         return null;
+    }
+
+    public void mostrar(int op) {
+        String s = "";
+        int p = 500, t = 300;
+
+        Iterator<Docente> itrCatedra = arrayCatedra.iterator();
+        Iterator<Docente> itrOcasional = arrayOcasional.iterator();
+        Iterator<Docente> itrCompleto = arrayCompleto.iterator();
+
+        switch (op) {
+            case 1:
+                for (Docente docente : arrayCompleto) {
+                    docente = itrCompleto.next();
+                    s += "Cc: " + docente.getCc() + ", " +
+                            "Nombre: " + docente.getNombre() + ", "
+                            + "Genero: " + docente.getSexo() + ", "
+                            + "Facultad: " + docente.getFacultad() + ", "
+                            + "Titulo: " + docente.getTitulo() + ", "
+                            + "Cantidad de asignaturas que dicta: " + docente.getAsigDictadas() + ", "
+                            + "Cantidad de horas dictadas semanalmente: " + docente.getHrsDictadas() + ", "
+                            + "Fecha de nacimiento: " + docente.getFchNacimiento()
+                            + "\n";
+                }
+                break;
+            case 2:
+                for (Docente docente : arrayOcasional) {
+                    docente = itrOcasional.next();
+                    s += "Cc: " + docente.getCc() + ", " +
+                            "Nombre: " + docente.getNombre() + ", "
+                            + "Genero: " + docente.getSexo() + ", "
+                            + "Facultad: " + docente.getFacultad() + ", "
+                            + "Titulo: " + docente.getTitulo() + ", "
+                            + "Cantidad de asignaturas que dicta: " + docente.getAsigDictadas() + ", "
+                            + "Cantidad de horas dictadas semanalmente: " + docente.getHrsDictadas() + ", "
+                            + "Fecha de nacimiento: " + docente.getFchNacimiento()
+                            + "\n";
+                }
+
+                break;
+            case 3:
+                for (Docente docente : arrayCatedra) {
+                    docente = itrCatedra.next();
+                    s += "Cc: " + docente.getCc() + ", " +
+                            "Nombre: " + docente.getNombre() + ", "
+                            + "Genero: " + docente.getSexo() + ", "
+                            + "Facultad: " + docente.getFacultad() + ", "
+                            + "Titulo: " + docente.getTitulo() + ", "
+                            + "Cantidad de asignaturas que dicta: " + docente.getAsigDictadas() + ", "
+                            + "Cantidad de horas dictadas semanalmente: " + docente.getHrsDictadas() + ", "
+                            + "Fecha de nacimiento: " + docente.getFchNacimiento()
+                            + "\n";
+                }
+                break;
+            default:
+                break;
+        }
+
+        JTextArea textArea = new JTextArea(s);
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        scrollPane.setPreferredSize(new Dimension(p, t));
+        JOptionPane.showMessageDialog(null, scrollPane, "Trabajadores Panaderia", 1);
+
     }
 
 }
