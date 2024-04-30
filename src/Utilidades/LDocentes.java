@@ -85,7 +85,7 @@ public class LDocentes {
         boolean salir = false;
         while (!salir) {
             String[] options = { "Docente de Tiempo Completo", "Docente Ocasional", "Docente de Catedra" };
-            opcion = JOptionPane.showOptionDialog(null, "Seleccione una opción:", "Tipos de docentes",
+        opcion = JOptionPane.showOptionDialog(null, "Seleccione una opción:", "Tipos de docentes",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
             switch (opcion) {
                 case 0:
