@@ -11,6 +11,7 @@ import Docentes.Docente;
 import javax.swing.*;
 import java.time.LocalDate;
 
+
 public class LDocentes {
 
     private TreeSet<Docente> Catedra;
@@ -37,37 +38,35 @@ public class LDocentes {
             while (s.hasNextLine()) {
                 String linea = s.nextLine();
                 String[] cortarString = linea.split(";");
-
+               
+             if (cortarString.length >= 9) { 
                 op = Integer.parseInt(cortarString[0]);
                 Docente docente = new Docente();
                 docente.setCc(cortarString[1]);
                 docente.setNombre(cortarString[2]);
                 docente.setSexo(cortarString[3]);
                 docente.setFacultad(cortarString[4]);
-                docente.setAsigDictadas(Integer.parseInt(cortarString[5]));
-                docente.setHrsDictadas(Integer.parseInt(cortarString[6]));
+                if (!cortarString[5].isEmpty()) {
+                    docente.setAsigDictadas(Integer.parseInt(cortarString[5]));
+                }
+                if (!cortarString[6].isEmpty()) {
+                    docente.setHrsDictadas(Integer.parseInt(cortarString[6]));
+                }
                 docente.setFchNacimiento(LocalDate.parse(cortarString[7]));
                 docente.setTitulo(cortarString[8]);
                 switch (op) {
                     case 1:
                         arrayCompleto.add(docente);
-
                         break;
-
                     case 2:
-
                         arrayOcasional.add(docente);
-
                         break;
-
                     case 3:
-
                         arrayCatedra.add(docente);
-
                         break;
                 }
-
             }
+        }
             JOptionPane.showMessageDialog(null, "Se han cargado los datos");
         } catch (Exception e) {
             e.printStackTrace();
@@ -112,7 +111,7 @@ public class LDocentes {
 
     public void mostrar(int op) {
         String s = "";
-        int p = 500, t = 300;
+        
 
         Iterator<Docente> itrCatedra = arrayCatedra.iterator();
         Iterator<Docente> itrOcasional = arrayOcasional.iterator();
@@ -120,6 +119,7 @@ public class LDocentes {
 
         switch (op) {
             case 1:
+                s+= " Docentes de tiempo Completo:\n";
                 for (Docente docente : arrayCompleto) {
                     docente = itrCompleto.next();
                     s += "Cc: " + docente.getCc() + ", " +
@@ -134,6 +134,7 @@ public class LDocentes {
                 }
                 break;
             case 2:
+                 s+= " Docentes Ocasionales:\n";
                 for (Docente docente : arrayOcasional) {
                     docente = itrOcasional.next();
                     s += "Cc: " + docente.getCc() + ", " +
@@ -149,6 +150,7 @@ public class LDocentes {
 
                 break;
             case 3:
+                 s+= " Docentes de Catedra:\n";
                 for (Docente docente : arrayCatedra) {
                     docente = itrCatedra.next();
                     s += "Cc: " + docente.getCc() + ", " +
@@ -165,13 +167,18 @@ public class LDocentes {
             default:
                 break;
         }
-
-        JTextArea textArea = new JTextArea(s);
+                jmostrar(s);
+      
+    }
+    
+    public static void jmostrar(String s){
+        int p = 500, t = 300;
+          JTextArea textArea = new JTextArea(s);
         JScrollPane scrollPane = new JScrollPane(textArea);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         scrollPane.setPreferredSize(new Dimension(p, t));
-        JOptionPane.showMessageDialog(null, scrollPane, "Trabajadores Panaderia", 1);
+        JOptionPane.showMessageDialog(null, scrollPane, "Docentes", 1);
 
     }
 

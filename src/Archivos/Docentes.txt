@@ -28,4 +28,3 @@
 1;1098765432;Maria Martinez;Femenino;Administracion;6;18;1977-04-14;Doctorado
 1;9876543210;Juan Garcia;Masculino;Idiomas;7;14;1986-11-20;Maestria
 1;8765432109;Laura Perez;Femenino;Ingenieria;3;10;1992-08-05;Pregrado
-
