@@ -1,4 +1,5 @@
 package Utilidades;
+
 import com.toedter.calendar.JDateChooser;
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +17,8 @@ public class FechaIngreso {
     public static LocalDate fecha() {
         // Crear un nuevo marco (ventana)
         JFrame frame = new JFrame("Seleccionar fecha");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Configurar el cierre del programa cuando se cierra la ventana
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Configurar el cierre del programa cuando se cierra la
+                                                              // ventana
         frame.setSize(300, 200); // Establecer el tamaño del marco
 
         // Crear un nuevo panel principal con disposición GridBagLayout
@@ -54,12 +56,9 @@ public class FechaIngreso {
             if (fechaselect != null) {
                 System.out.println("Fecha seleccionada: " + fechaselect);
                 edad.set(LocalDate.ofInstant(fechaselect.toInstant(), ZoneId.systemDefault()));
-                if(verificar(edad.get())) {
-                    JOptionPane.showMessageDialog(null,"Es mayor de edad");
-                    frame.dispose();
-                }else {
-                    JOptionPane.showMessageDialog(null,"No esta en el rango de edad para trabajar");
-                }
+
+                frame.dispose();
+
             } else {
                 // Imprimir si no se seleccionó ninguna fecha
                 System.out.println("No se seleccionó ninguna fecha");
@@ -78,13 +77,14 @@ public class FechaIngreso {
         return edad.get();
     }
 
-    private static boolean verificar(LocalDate fecha) {
+    public static boolean verificar(LocalDate fecha) {
         int edad = calcularEdad(fecha);
         String menor = "([0-9]|1[0-7])";
         String mayor = "(9[0-9]{1,2}|1000)";
+        String neg = "^-[0-9]+$";
         String edadStr = Integer.toString(edad);
 
-        if (edadStr.matches(menor) || edadStr.matches(mayor)) {
+        if (edadStr.matches(neg) || edadStr.matches(menor) || edadStr.matches(mayor)) {
             return false;
         }
         return true;
@@ -95,4 +95,3 @@ public class FechaIngreso {
         return Period.between(fechaNacimiento, fechaActual).getYears();
     }
 }
-

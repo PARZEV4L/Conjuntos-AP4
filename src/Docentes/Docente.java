@@ -1,5 +1,6 @@
 package Docentes;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Docente implements Comparable<Docente>{
     private String Cc;
@@ -14,36 +15,8 @@ public class Docente implements Comparable<Docente>{
     public Docente() {
     }
 
+   
 
-    public static boolean validarCedula(String cedula) {
-        String patron = "\\d+";
-        return cedula.matches(patron);
-    }
-
-
-    public static boolean validarNombre(String nombre) {
-        String patron = "[a-zA-Z ]+";
-        return nombre.matches(patron);
-    }
-
-
-
-    public static boolean validarCantidadAsignaturas(String cantidad) {
-        String patron = "[1-9]|10";
-        return cantidad.matches(patron);
-    }
-
-
-    public static boolean validarCantidadHoras(String horas) {
-        String patron = "\\d{1,2}|20";
-        return horas.matches(patron);
-    }
-
-
-    public static boolean validarFechaNacimiento(String fecha) {
-        String patron = "\\d{4}-\\d{2}-\\d{2}";
-        return fecha.matches(patron);
-    }
 
     public String getSexo() {
         return Sexo;
@@ -110,6 +83,23 @@ public class Docente implements Comparable<Docente>{
         Cc = cc;
     }
 
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Docente docente = (Docente) obj;
+        return Objects.equals(Cc, docente.Cc);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Cc);
+    }
 
     @Override
     public int compareTo(Docente otroDocente) {

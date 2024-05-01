@@ -1,30 +1,30 @@
-3;1234567890;Ana Pérez;Femenino;Ingeniería;5;15;1980-05-10
-3;2345678901;Juan Martínez;Masculino;Deportes;3;10;1975-12-20
-3;3456789012;María López;Femenino;Comunicación;4;12;1990-08-15
-3;4567890123;José Rodríguez;Masculino;Administración;6;18;1988-03-25
-3;5678901234;Laura Gómez;Femenino;Idiomas;7;14;1973-07-05
-3;6789012345;Carlos Ruiz;Masculino;Ciencias Básicas;2;8;1985-11-30
-3;7890123456;Ana García;Femenino;Ingeniería;8;16;1979-09-18
-3;8901234567;Juanita Ramírez;Femenino;Deportes;3;10;1982-04-12
-3;9012345678;Pedro Gutiérrez;Masculino;Comunicación;5;15;1992-01-28
-3;0123456789;Marta Sánchez;Femenino;Administración;4;12;1987-06-14
-2;9876543210;Carlos Pérez;Masculino;Idiomas;6;18;1980-02-08
-2;8765432109;Susana Martínez;Femenino;Ciencias Básicas;7;14;1975-11-23
-2;7654321098;Juan Pérez;Masculino;Ingeniería;2;8;1983-08-17
-2;6543210987;Laura López;Femenino;Deportes;8;16;1990-04-05
-2;5432109876;José García;Masculino;Comunicación;3;10;1978-12-30
-2;4321098765;María Ramírez;Femenino;Administración;5;15;1986-03-18
-2;3210987654;Andrés Gutiérrez;Masculino;Idiomas;4;12;1977-09-12
-2;2109876543;Ana Sánchez;Femenino;Ciencias Básicas;6;18;1991-05-24
-2;1098765432;Carlos García;Masculino;Ingeniería;7;14;1982-07-08
-2;9876543210;Laura Martínez;Femenino;Deportes;2;8;1974-10-20
-1;8765432109;Juan Sánchez;Masculino;Comunicación;Maestría;8;16;1988-02-15
-1;7654321098;María García;Femenino;Administración;Pregrado;3;10;1976-09-28
-1;6543210987;José Martínez;Masculino;Idiomas;Especialista;5;15;1984-03-12
-1;5432109876;Laura Ramírez;Femenino;Ingeniería;Doctorado;6;18;1979-07-25
-1;4321098765;Andrés Pérez;Masculino;Deportes;Maestría;7;14;1981-12-08
-1;3210987654;Ana Gómez;Femenino;Ciencias Básicas;Pregrado;4;12;1990-05-18
-1;2109876543;Carlos López;Masculino;Comunicación;Especialista;5;15;1983-09-30
-1;1098765432;María Martínez;Femenino;Administración;Doctorado;6;18;1977-04-14
-1;9876543210;Juan García;Masculino;Idiomas;Maestría;7;14;1986-11-20
-1;8765432109;Laura Pérez;Femenino;Ingeniería;Pregrado;3;10;1992-08-05
+3;1234567890;Ana Perez;Femenino;Ingenieria;5;15;1980-05-10;Pregrado
+3;2345678901;Juan Martinez;Masculino;Deportes;3;10;1975-12-20;Pregrado
+3;3456789012;Maria Lopez;Femenino;Comunicacion;4;12;1990-08-15;Pregrado
+3;4567890123;Jose Rodriguez;Masculino;Administracion;6;18;1988-03-25;Pregrado
+3;5678901234;Laura Gomez;Femenino;Idiomas;7;14;1973-07-05;Pregrado
+3;6789012345;Carlos Ruiz;Masculino;Ciencias Basicas;2;8;1985-11-30;Pregrado
+3;7890123456;Ana Garcia;Femenino;Ingenieria;8;16;1979-09-18;Pregrado
+3;8901234567;Juanita Ramirez;Femenino;Deportes;3;10;1982-04-12;Pregrado
+3;9012345678;Pedro Gutierrez;Masculino;Comunicacion;5;15;1992-01-28;Pregrado
+3;0123456789;Marta Sanchez;Femenino;Administracion;4;12;1987-06-14;Pregrado
+2;9876543210;Carlos Perez;Masculino;Idiomas;6;18;1980-02-08;Especialista
+2;8765432109;Susana Martinez;Femenino;Ciencias Basicas;7;14;1975-11-23;Especialista
+2;7654321098;Juan Perez;Masculino;Ingenieria;2;8;1983-08-17;Especialista
+2;3210987654;Andres Gutierrez;Masculino;Idiomas;4;12;1977-09-12;Especialista
+2;2109876543;Ana Sanchez;Femenino;Ciencias Basicas;6;18;1991-05-24;Especialista
+2;1098765432;Carlos Garcia;Masculino;Ingenieria;7;14;1982-07-08;Especialista
+2;9876543210;Laura Martinez;Femenino;Deportes;2;8;1974-10-20;Especialista
+1;8765432189;Juan Sanchez;Masculino;Comunicacion;8;16;1988-02-15;Maestria
+1;7654321098;Maria Garcia;Femenino;Administracion;3;10;1976-09-28;Pregrado
+1;6543210987;Jose Martinez;Masculino;Idiomas;5;15;1984-03-12;Especialista
+1;5432109876;Laura Ramirez;Femenino;Ingenieria;6;18;1979-07-25;Doctorado
+1;4321098765;Andres Perez;Masculino;Deportes;7;14;1981-12-08;Maestria
+1;3210987654;Ana Gomez;Femenino;Ciencias Basicas;4;12;1990-05-18;Pregrado
+1;2109876543;Carlos Lopez;Masculino;Comunicacion;5;15;1983-09-30;Especialista
+1;1098765432;Maria Martinez;Femenino;Administracion;6;18;1977-04-14;Doctorado
+1;9876543210;Juan Garcia;Masculino;Idiomas;7;14;1986-11-20;Maestria
+1;8765432109;Laura Perez;Femenino;Ingenieria;3;10;1992-08-05;Pregrado
+1;1234567890;Ana Perez;Femenino;Ingenieria;5;15;1980-05-10;Pregrado
+1;2345678901;Juan Martinez;Masculino;Deportes;3;10;1975-12-20;Pregrado
+1;3456789012;Maria Lopez;Femenino;Comunicacion;4;12;1990-08-15;Pregrado
