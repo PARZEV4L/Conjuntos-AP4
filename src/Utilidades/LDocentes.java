@@ -132,7 +132,9 @@ public class LDocentes {
 
                 break;
             case 4:
-                TreeSet<Docente> x = Catedra;
+                TreeSet<Docente> x = new TreeSet<>();
+                x.addAll(Catedra);
+                        
                 x.addAll(Completo);
                 x.addAll(Ocasional);
                   s = auxMostrar(x, op);
@@ -234,9 +236,12 @@ public class LDocentes {
 
     public  void InterseccionCompletoCatedra(){
         String s = "";
-        TreeSet<Docente> Interseccion = Completo;
-        
-        Interseccion.retainAll(Catedra);
+        TreeSet<Docente> Interseccion = new TreeSet<>();
+        TreeSet<Docente> Interseccion2 = new TreeSet<>();
+        Interseccion2.addAll(Catedra);
+        Interseccion2.removeAll(Ocasional);
+        Interseccion.addAll(Completo);
+        Interseccion.retainAll(Interseccion2);
          
           int contador = 0;
         for (Docente docente : Interseccion) {
