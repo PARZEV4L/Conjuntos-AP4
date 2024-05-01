@@ -8,13 +8,8 @@ public class Principal {
 
 
     public static void main(String[] args) {
-      //  LocalDate x = FechaIngreso.fecha();
-            LDocentes ld = new LDocentes();
-  
-            ld.CargarDatos();
-            ld.mostrar(1);
-           // ld.conjuntoExclusivo(1);
-            ld.InterseccionCompletoCatedra();
+     Menu menu = new Menu();
+     menu.menu();
     }
     
 }
