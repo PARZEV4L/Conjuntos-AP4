@@ -22,6 +22,11 @@ public class LDocentes {
     private ArrayList<Docente> arrayCompleto;
     private String sfichero = "src/Archivos/Docentes.txt";
 
+    private String[] opcionesDocentes = { "Docente de Tiempo Completo", "Docente Ocasional", "Docente de Catedra" };
+    private String[] opcionesTC = { "Docente Ocasional", "Docente de Catedra" };
+    private String[] opcionesCT = { "Docente Ocasional", "Docente de Tiempo completo" };
+    private String[] opcionesOC = { "Docente Catedra", "Docente de Tiempo completo" };
+
     public void CargarDatos() {
         this.arrayCatedra = new ArrayList<>();
         this.arrayOcasional = new ArrayList<>();
@@ -83,31 +88,44 @@ public class LDocentes {
     }
 
     public void IngresarDocente() {
+        int op = 0;
+        do {
+            op = ingresoTipoDocente(opcionesCT, 3);
+            System.err.println(op);
+            switch (op) {
+                case 1:
+                    
+                    op = 0;
+                    break;
+                case 2:
+
+                    break;
+
+                case 3:
+
+                    break;
+
+                default:
+                    break;
+            }
+        } while (op!=0);
 
     }
 
-    public static String ingresotD() {
+    public static int ingresoTipoDocente(String[] opciones, int valorPorDefecto) {
         int opcion;
         boolean salir = false;
         while (!salir) {
-            String[] options = { "Docente de Tiempo Completo", "Docente Ocasional", "Docente de Catedra" };
-        opcion = JOptionPane.showOptionDialog(null, "Seleccione una opción:", "Tipos de docentes",
-                    JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-            switch (opcion) {
-                case 0:
-                    return "Docente de Planta";
-
-                case 1:
-                    return "Docente Ocasional";
-
-                case 2:
-                    return "Docente de Catedra";
-                default:
-                    JOptionPane.showMessageDialog(null, "Opción no válida. Intente de nuevo.");
+            opcion = JOptionPane.showOptionDialog(null, "Seleccione una opción:", "Tipos de docentes",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
+            if (opcion >= 0 && opcion < opciones.length) {
+                salir = true;
+                return opcion + valorPorDefecto;
+            } else {
+                JOptionPane.showMessageDialog(null, "Opción no válida. Intente de nuevo.");
             }
         }
-
-        return null;
+        return 0;
     }
 
     public void mostrar(int op) {
@@ -174,5 +192,6 @@ public class LDocentes {
         JOptionPane.showMessageDialog(null, scrollPane, "Trabajadores Panaderia", 1);
 
     }
+
 
 }

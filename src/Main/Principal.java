@@ -14,6 +14,8 @@ public class Principal {
             ld.CargarDatos();
             ld.mostrar(1);
 
+            ld.IngresarDocente();
+
 
 
     }
