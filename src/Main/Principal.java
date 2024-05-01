@@ -13,9 +13,8 @@ public class Principal {
   
             ld.CargarDatos();
             ld.mostrar(1);
-
-
-
+           // ld.conjuntoExclusivo(1);
+            ld.InterseccionCompletoCatedra();
     }
     
 }

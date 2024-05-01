@@ -10,7 +10,7 @@ import java.util.TreeSet;
 import Docentes.Docente;
 import javax.swing.*;
 import java.time.LocalDate;
-
+import java.util.List;
 
 public class LDocentes {
 
@@ -27,6 +27,10 @@ public class LDocentes {
         this.arrayCatedra = new ArrayList<>();
         this.arrayOcasional = new ArrayList<>();
         this.arrayCompleto = new ArrayList<>();
+        Catedra = new TreeSet<>();
+        Ocasional = new TreeSet<>();
+        Completo = new TreeSet<>();
+
         File fichero = new File(sfichero);
         Scanner s = null;
 
@@ -38,42 +42,46 @@ public class LDocentes {
             while (s.hasNextLine()) {
                 String linea = s.nextLine();
                 String[] cortarString = linea.split(";");
-               
-             if (cortarString.length >= 9) { 
-                op = Integer.parseInt(cortarString[0]);
-                Docente docente = new Docente();
-                docente.setCc(cortarString[1]);
-                docente.setNombre(cortarString[2]);
-                docente.setSexo(cortarString[3]);
-                docente.setFacultad(cortarString[4]);
-                if (!cortarString[5].isEmpty()) {
-                    docente.setAsigDictadas(Integer.parseInt(cortarString[5]));
-                }
-                if (!cortarString[6].isEmpty()) {
-                    docente.setHrsDictadas(Integer.parseInt(cortarString[6]));
-                }
-                docente.setFchNacimiento(LocalDate.parse(cortarString[7]));
-                docente.setTitulo(cortarString[8]);
-                switch (op) {
-                    case 1:
-                        arrayCompleto.add(docente);
-                        break;
-                    case 2:
-                        arrayOcasional.add(docente);
-                        break;
-                    case 3:
-                        arrayCatedra.add(docente);
-                        break;
+
+                if (cortarString.length >= 9) {
+                    op = Integer.parseInt(cortarString[0]);
+                    Docente docente = new Docente();
+                    docente.setCc(cortarString[1]);
+                    docente.setNombre(cortarString[2]);
+                    docente.setSexo(cortarString[3]);
+                    docente.setFacultad(cortarString[4]);
+                    if (!cortarString[5].isEmpty()) {
+                        docente.setAsigDictadas(Integer.parseInt(cortarString[5]));
+                    }
+                    if (!cortarString[6].isEmpty()) {
+                        docente.setHrsDictadas(Integer.parseInt(cortarString[6]));
+                    }
+                    docente.setFchNacimiento(LocalDate.parse(cortarString[7]));
+                    docente.setTitulo(cortarString[8]);
+                    switch (op) {
+                        case 1:
+                            arrayCompleto.add(docente);
+                            Completo.add(docente);
+                            break;
+                        case 2:
+                            arrayOcasional.add(docente);
+                            Ocasional.add(docente);
+                            break;
+                        case 3:
+                            arrayCatedra.add(docente);
+                            Catedra.add(docente);
+                            break;
+                    }
                 }
             }
-        }
             JOptionPane.showMessageDialog(null, "Se han cargado los datos");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if (s != null)
+                if (s != null) {
                     s.close();
+                }
             } catch (Exception e2) {
                 e2.printStackTrace();
             }
@@ -89,7 +97,7 @@ public class LDocentes {
         int opcion;
         boolean salir = false;
         while (!salir) {
-            String[] options = { "Docente de Tiempo Completo", "Docente Ocasional", "Docente de Catedra" };
+            String[] options = {"Docente de Tiempo Completo", "Docente Ocasional", "Docente de Catedra"};
             opcion = JOptionPane.showOptionDialog(null, "Seleccione una opción:", "Tipos de docentes",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
             switch (opcion) {
@@ -111,69 +119,57 @@ public class LDocentes {
 
     public void mostrar(int op) {
         String s = "";
-        
-
-        Iterator<Docente> itrCatedra = arrayCatedra.iterator();
-        Iterator<Docente> itrOcasional = arrayOcasional.iterator();
-        Iterator<Docente> itrCompleto = arrayCompleto.iterator();
-
         switch (op) {
             case 1:
-                s+= " Docentes de tiempo Completo:\n";
-                for (Docente docente : arrayCompleto) {
-                    docente = itrCompleto.next();
-                    s += "Cc: " + docente.getCc() + ", " +
-                            "Nombre: " + docente.getNombre() + ", "
-                            + "Genero: " + docente.getSexo() + ", "
-                            + "Facultad: " + docente.getFacultad() + ", "
-                            + "Titulo: " + docente.getTitulo() + ", "
-                            + "Cantidad de asignaturas que dicta: " + docente.getAsigDictadas() + ", "
-                            + "Cantidad de horas dictadas semanalmente: " + docente.getHrsDictadas() + ", "
-                            + "Fecha de nacimiento: " + docente.getFchNacimiento()
-                            + "\n";
-                }
+                s = auxMostrar(Completo, op);
                 break;
             case 2:
-                 s+= " Docentes Ocasionales:\n";
-                for (Docente docente : arrayOcasional) {
-                    docente = itrOcasional.next();
-                    s += "Cc: " + docente.getCc() + ", " +
-                            "Nombre: " + docente.getNombre() + ", "
-                            + "Genero: " + docente.getSexo() + ", "
-                            + "Facultad: " + docente.getFacultad() + ", "
-                            + "Titulo: " + docente.getTitulo() + ", "
-                            + "Cantidad de asignaturas que dicta: " + docente.getAsigDictadas() + ", "
-                            + "Cantidad de horas dictadas semanalmente: " + docente.getHrsDictadas() + ", "
-                            + "Fecha de nacimiento: " + docente.getFchNacimiento()
-                            + "\n";
-                }
+                s = auxMostrar(Ocasional, op);
 
                 break;
             case 3:
-                 s+= " Docentes de Catedra:\n";
-                for (Docente docente : arrayCatedra) {
-                    docente = itrCatedra.next();
-                    s += "Cc: " + docente.getCc() + ", " +
-                            "Nombre: " + docente.getNombre() + ", "
-                            + "Genero: " + docente.getSexo() + ", "
-                            + "Facultad: " + docente.getFacultad() + ", "
-                            + "Titulo: " + docente.getTitulo() + ", "
-                            + "Cantidad de asignaturas que dicta: " + docente.getAsigDictadas() + ", "
-                            + "Cantidad de horas dictadas semanalmente: " + docente.getHrsDictadas() + ", "
-                            + "Fecha de nacimiento: " + docente.getFchNacimiento()
-                            + "\n";
-                }
+                s = auxMostrar(Catedra, op);
+
+                break;
+            case 4:
+                TreeSet<Docente> x = Catedra;
+                x.addAll(Completo);
+                x.addAll(Ocasional);
+                  s = auxMostrar(x, op);
                 break;
             default:
                 break;
         }
-                jmostrar(s);
-      
+        jmostrar(s);
+
     }
-    
-    public static void jmostrar(String s){
+
+    private static String auxMostrar(TreeSet<Docente> x, int op) {
+        int contador = 0;
+        String s = "";
+        String[] vectDoc = {"de Tiempo Completo ", "de Catedra ", "de Ocasional ", " "};
+        s += " Docentes " + vectDoc[op-1] + "\n\n";
+        Iterator<Docente> itrx = x.iterator();
+        for (Docente docente : x) {
+            contador += 1;
+            docente = itrx.next();
+            s += "Cc: " + docente.getCc() + ", "
+                    + "Nombre: " + docente.getNombre() + ", "
+                    + "Genero: " + docente.getSexo() + ", "
+                    + "Facultad: " + docente.getFacultad() + ", "
+                    + "Titulo: " + docente.getTitulo() + ", "
+                    + "Cantidad de asignaturas que dicta: " + docente.getAsigDictadas() + ", "
+                    + "Cantidad de horas dictadas semanalmente: " + docente.getHrsDictadas() + ", "
+                    + "Fecha de nacimiento: " + docente.getFchNacimiento()
+                    + "\n";
+        }
+        s += "En total son: " + contador + " Docentes " + vectDoc[op-1];
+        return s;
+    }
+
+    public static void jmostrar(String s) {
         int p = 500, t = 300;
-          JTextArea textArea = new JTextArea(s);
+        JTextArea textArea = new JTextArea(s);
         JScrollPane scrollPane = new JScrollPane(textArea);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
@@ -182,4 +178,81 @@ public class LDocentes {
 
     }
 
+    public void conjuntoExclusivo(int op) {
+        String[] vectDoc = {"Tiempo Completo solamente", "Catedra solamente", "Ocasional solamente"};
+        String s = "";
+        TreeSet<Docente> Tdocente = new TreeSet<>();
+        TreeSet<Docente> TAuxDocente = new TreeSet<>();
+        switch (op) {
+            case 1:
+
+                Tdocente.addAll(Catedra);
+                Tdocente.addAll(Ocasional);
+                TAuxDocente = Completo;
+                TAuxDocente.removeAll(Tdocente);
+
+                break;
+
+            case 2:
+
+                Tdocente.addAll(Completo);
+                Tdocente.addAll(Ocasional);
+                TAuxDocente = Catedra;
+                TAuxDocente.removeAll(Tdocente);
+
+                break;
+
+            case 3:
+
+                Tdocente.addAll(Completo);
+                Tdocente.addAll(Catedra);
+                TAuxDocente = Ocasional;
+                TAuxDocente.removeAll(Tdocente);
+
+                break;
+            default:
+                break;
+
+        }
+        int contador = 0;
+        s += vectDoc[op-1] + "\n";
+        for (Docente docente : TAuxDocente) {
+            contador += 1;
+            s += "Cc: " + docente.getCc() + ", "
+                    + "Nombre: " + docente.getNombre() + ", "
+                    + "Genero: " + docente.getSexo() + ", "
+                    + "Facultad: " + docente.getFacultad() + ", "
+                    + "Titulo: " + docente.getTitulo() + ", "
+                    + "Cantidad de asignaturas que dicta: " + docente.getAsigDictadas() + ", "
+                    + "Cantidad de horas dictadas semanalmente: " + docente.getHrsDictadas() + ", "
+                    + "Fecha de nacimiento: " + docente.getFchNacimiento()
+                    + "\n";
+        }
+        s += "En total son: " + contador + " Docentes de " + vectDoc[op-1];
+        jmostrar(s);
+    }
+
+    public  void InterseccionCompletoCatedra(){
+        String s = "";
+        TreeSet<Docente> Interseccion = Completo;
+        
+        Interseccion.retainAll(Catedra);
+         
+          int contador = 0;
+        for (Docente docente : Interseccion) {
+            contador += 1;
+            s += "Cc: " + docente.getCc() + ", "
+                    + "Nombre: " + docente.getNombre() + ", "
+                    + "Genero: " + docente.getSexo() + ", "
+                    + "Facultad: " + docente.getFacultad() + ", "
+                    + "Titulo: " + docente.getTitulo() + ", "
+                    + "Cantidad de asignaturas que dicta: " + docente.getAsigDictadas() + ", "
+                    + "Cantidad de horas dictadas semanalmente: " + docente.getHrsDictadas() + ", "
+                    + "Fecha de nacimiento: " + docente.getFchNacimiento()
+                    + "\n";
+        }
+        s += "En total son: " + contador;
+        jmostrar(s);
+        
+    }
 }
