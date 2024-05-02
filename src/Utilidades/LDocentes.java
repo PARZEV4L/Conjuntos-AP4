@@ -24,7 +24,7 @@ public class LDocentes {
     private ArrayList<Docente> arrayCompleto;
     private String sfichero = "src/Archivos/Docentes.txt";
 
-    private String[] opcionesDocentes = { "Docente de Tiempo Completo", "Docente Ocasional", "Docente de Catedra" };
+    private String[] opcionesDocentes = {"Docente de Tiempo Completo", "Docente Ocasional", "Docente de Catedra"};
 
     public LDocentes() {
         this.CargarDatos();
@@ -182,10 +182,10 @@ public class LDocentes {
     }
 
     private Docente IngresoDoc() {
-        String[] sex = { "Masculino", "Femenimno" };
-        String[] facultades = { "Ingenieria", "Deportes", "Comunicación", "Administracion", "Idiomas",
-                "Ciencias Basicas" };
-        String[] titulo = { "Pregrado", "Especialista", "maestria", "Doctorado" };
+        String[] sex = {"Masculino", "Femenimno"};
+        String[] facultades = {"Ingenieria", "Deportes", "Comunicación", "Administracion", "Idiomas",
+            "Ciencias Basicas"};
+        String[] titulo = {"Pregrado", "Especialista", "maestria", "Doctorado"};
         Docente x = new Docente();
         x.setCc(ingresoCc());
         x.setNombre(IngresoNombre());
@@ -279,13 +279,12 @@ public class LDocentes {
     }
 
     private static String auxMostrar(TreeSet<Docente> x, int op) {
-        int contador = 0;
+
         String s = "";
-        String[] vectDoc = { "de Tiempo Completo ", "de Catedra ", "de Ocasional ", " " };
+        String[] vectDoc = {"de Tiempo Completo ", "de Catedra ", "de Ocasional ", " "};
         s += " Docentes " + vectDoc[op - 1] + "\n\n";
         Iterator<Docente> itrx = x.iterator();
         for (Docente docente : x) {
-            contador += 1;
             docente = itrx.next();
             s += "Cc: " + docente.getCc() + ", "
                     + "Nombre: " + docente.getNombre() + ", "
@@ -297,7 +296,7 @@ public class LDocentes {
                     + "Fecha de nacimiento: " + docente.getFchNacimiento()
                     + "\n";
         }
-        s += "En total son: " + contador + " Docentes " + vectDoc[op - 1];
+        s += "En total son: " + x.size() + " Docentes " + vectDoc[op - 1];
         return s;
     }
 
@@ -335,7 +334,7 @@ public class LDocentes {
     }
 
     public void conjuntoExclusivo(int op) {
-        String[] vectDoc = { "Tiempo Completo solamente", "Catedra solamente", "Ocasional solamente" };
+        String[] vectDoc = {"Tiempo Completo solamente", "Catedra solamente", "Ocasional solamente"};
         String s = "";
         TreeSet<Docente> Tdocente = new TreeSet<>();
         TreeSet<Docente> TAuxDocente = new TreeSet<>();
@@ -369,10 +368,10 @@ public class LDocentes {
                 break;
 
         }
-        int contador = 0;
+       
         s += vectDoc[op - 1] + "\n";
         for (Docente docente : TAuxDocente) {
-            contador += 1;
+           
             s += "\nCc: " + docente.getCc() + "\n"
                     + "Nombre: " + docente.getNombre() + "\n"
                     + "Genero: " + docente.getSexo() + "\n"
@@ -383,7 +382,7 @@ public class LDocentes {
                     + "Fecha de nacimiento: " + docente.getFchNacimiento()
                     + "\n";
         }
-        s += "En total son: " + contador + " Docentes de " + vectDoc[op - 1];
+        s += "En total son: " + TAuxDocente.size() + " Docentes de " + vectDoc[op - 1];
         jmostrar(s);
     }
 
@@ -441,20 +440,23 @@ public class LDocentes {
         for (Docente profesor : Completo) {
             if ((profesor.getSexo()).contains("Femenino")) {
                 Mujeres[0]++;
-            } else
+            } else {
                 Hombres[0]++;
+            }
         }
         for (Docente profesor : Ocasional) {
             if ((profesor.getSexo()).contains("Femenino")) {
                 Mujeres[1]++;
-            } else
+            } else {
                 Hombres[1]++;
+            }
         }
         for (Docente profesor : Catedra) {
             if ((profesor.getSexo()).contains("Femenino")) {
                 Mujeres[2]++;
-            } else
+            } else {
                 Hombres[2]++;
+            }
         }
         String s = "Cantidad de Hombres y mujeres por tipo de contrato: \n";
         s = "Tiempo Completo: \n    Hombres: " + Hombres[0] + "\n    Mujeres: " + Mujeres[0]
@@ -486,5 +488,20 @@ public class LDocentes {
         }
         jmostrar(s);
     }
-
+    
+      public static void Titulo(TreeSet<Docente> docentes) {
+        Map<String, TreeSet<Docente>> docentesPorTitulo = new HashMap<>();
+        for (Docente docente : docentes) {
+            String Titulo = docente.getTitulo();
+            docentesPorTitulo.putIfAbsent(Titulo, new TreeSet<>());
+            docentesPorTitulo.get(Titulo).add(docente);
+        }
+        String s = "";
+        for (Map.Entry<String, TreeSet<Docente>> entry : docentesPorTitulo.entrySet()) {
+            s += "Titulo " + entry.getKey() + " con " + entry.getValue().size() + " docentes de los cuales son: "
+                    + auxMostrar(entry.getValue(), "\n" + entry.getKey());
+            s += "\n-----------------------------\n";
+        }
+        jmostrar(s);
+    }
 }

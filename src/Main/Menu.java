@@ -54,6 +54,11 @@ public class Menu {
                 case 7:
                     ld.Ingresar();
                     break;
+
+                case 8:
+                    ld.Titulo(ld.Union());
+                    break;
+                    
                 case 0:
                     JOptionPane.showMessageDialog(null, "Gracias por confiar en nosotros...\n");
                     break;
