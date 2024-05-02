@@ -27,7 +27,7 @@ public class Menu {
                     + "5.Cantidad de hombre y mujeres por cada tipo de contrato.\n"
                     + "6.Listar y contar profesores por cada facultad.\n"
                     + "7.Ingresar Docente.\n"
-                    + "8 .Adicionar otra funcion.\n"
+                    + "8.Listar y contar profesores por cada Titulo.\n"
                     + "0.Salir.\n"));
             switch (op) {
                 case 1:
