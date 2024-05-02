@@ -368,22 +368,8 @@ public class LDocentes {
                 break;
 
         }
+        jmostrar( auxMostrar(Catedra, vectDoc[op-1]));
        
-        s += vectDoc[op - 1] + "\n";
-        for (Docente docente : TAuxDocente) {
-           
-            s += "\nCc: " + docente.getCc() + "\n"
-                    + "Nombre: " + docente.getNombre() + "\n"
-                    + "Genero: " + docente.getSexo() + "\n"
-                    + "Facultad: " + docente.getFacultad() + "\n"
-                    + "Titulo: " + docente.getTitulo() + "\n"
-                    + "Cantidad de asignaturas que dicta: " + docente.getAsigDictadas() + "\n"
-                    + "Cantidad de horas dictadas semanalmente: " + docente.getHrsDictadas() + "\n"
-                    + "Fecha de nacimiento: " + docente.getFchNacimiento()
-                    + "\n";
-        }
-        s += "En total son: " + TAuxDocente.size() + " Docentes de " + vectDoc[op - 1];
-        jmostrar(s);
     }
 
     @SuppressWarnings("rawtypes")
@@ -394,30 +380,11 @@ public class LDocentes {
     }
 
     public void InterseccionCompletoCatedra() {
-        String s = "";
-        TreeSet<Docente> Interseccion = new TreeSet<>();
-        TreeSet<Docente> Interseccion2 = new TreeSet<>();
-        Interseccion2.addAll(Catedra);
-        Interseccion2.removeAll(Ocasional);
-        Interseccion.addAll(Completo);
-        Interseccion.retainAll(Interseccion2);
-
-        int contador = 0;
-        for (Docente docente : Interseccion) {
-            contador += 1;
-            s += "Cc: " + docente.getCc() + ", "
-                    + "Nombre: " + docente.getNombre() + ", "
-                    + "Genero: " + docente.getSexo() + ", "
-                    + "Facultad: " + docente.getFacultad() + ", "
-                    + "Titulo: " + docente.getTitulo() + ", "
-                    + "Cantidad de asignaturas que dicta: " + docente.getAsigDictadas() + ", "
-                    + "Cantidad de horas dictadas semanalmente: " + docente.getHrsDictadas() + ", "
-                    + "Fecha de nacimiento: " + docente.getFchNacimiento()
-                    + "\n";
-        }
-        s += "En total son: " + contador;
+        
+     TreeSet<Docente> inter = Interseccion(Completo, Catedra);
+        String s = auxMostrar(inter, "Docentes que son Tiempo Completo y de Catedra");
         jmostrar(s);
-
+        
     }
 
     public void InterseccionOcCT() {

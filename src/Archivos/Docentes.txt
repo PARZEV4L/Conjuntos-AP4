@@ -28,3 +28,4 @@
 1;1234567890;Ana Perez;Femenino;Ingenieria;5;15;1980-05-10;Pregrado
 1;2345678901;Juan Martinez;Masculino;Deportes;3;10;1975-12-20;Pregrado
 1;3456789012;Maria Lopez;Femenino;Comunicacion;4;12;1990-08-15;Pregrado
+2;3456789012;Maria Lopez;Femenino;Comunicacion;4;12;1990-08-15;Pregrado
