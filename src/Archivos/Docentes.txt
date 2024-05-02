@@ -8,6 +8,7 @@
 3;8901234567;Juanita Ramirez;Femenino;Deportes;3;10;1982-04-12;Pregrado
 3;9012345678;Pedro Gutierrez;Masculino;Comunicacion;5;15;1992-01-28;Pregrado
 3;0123456789;Marta Sanchez;Femenino;Administracion;4;12;1987-06-14;Pregrado
+3;9876543210;Carlos Perez;Masculino;Idiomas;6;18;1980-02-08;Especialista
 2;9876543210;Carlos Perez;Masculino;Idiomas;6;18;1980-02-08;Especialista
 2;8765432109;Susana Martinez;Femenino;Ciencias Basicas;7;14;1975-11-23;Especialista
 2;7654321098;Juan Perez;Masculino;Ingenieria;2;8;1983-08-17;Especialista

@@ -373,15 +373,16 @@ public class LDocentes {
     }
 
     @SuppressWarnings("rawtypes")
-    private TreeSet Interseccion(TreeSet<Docente> A, TreeSet<Docente> B) {
+    private TreeSet Interseccion(TreeSet<Docente> A, TreeSet<Docente> B, TreeSet<Docente> C) {
         TreeSet<Docente> inters = new TreeSet<>(A);
         inters.retainAll(B);
+        inters.removeAll(C);
         return inters;
     }
 
     public void InterseccionCompletoCatedra() {
         
-     TreeSet<Docente> inter = Interseccion(Completo, Catedra);
+     TreeSet<Docente> inter = Interseccion(Completo, Catedra,Ocasional);
         String s = auxMostrar(inter, "Docentes que son Tiempo Completo y de Catedra");
         jmostrar(s);
         
@@ -389,7 +390,7 @@ public class LDocentes {
 
     public void InterseccionOcCT() {
         @SuppressWarnings("unchecked")
-        TreeSet<Docente> inter = Interseccion(Ocasional, Catedra);
+        TreeSet<Docente> inter = Interseccion(Ocasional, Catedra,Completo);
         String s = auxMostrar(inter, "Docentes que son Ocasionales y de Catedra");
         jmostrar(s);
     }
