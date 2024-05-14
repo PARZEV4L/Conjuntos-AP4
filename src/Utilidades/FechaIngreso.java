@@ -1,22 +1,19 @@
 package Utilidades;
 
-import com.toedter.calendar.JDateChooser;
-import javax.swing.*;
-import java.awt.*;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
-import java.util.concurrent.atomic.AtomicReference;
+import com.toedter.calendar.JDateChooser;//--1
+import javax.swing.*;//--1
+import java.awt.*;//--1
+import java.time.LocalDate;//--1
+import java.time.Period;//--1
+import java.time.ZoneId;//--1
+import java.util.concurrent.atomic.AtomicReference;//--1
 
-public class FechaIngreso {
+public class FechaIngreso {//T(n) = 5n+53
 
-    public FechaIngreso() {
 
-    }
-
-    public static LocalDate fecha() {
+    public static LocalDate fecha() {// T(n) = 5n+34
         // Crear un nuevo marco (ventana)
-        JFrame frame = new JFrame("Seleccionar fecha");
+        JFrame frame = new JFrame("Seleccionar fecha");///
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Configurar el cierre del programa cuando se cierra la
                                                               // ventana
         frame.setSize(300, 200); // Establecer el tamaño del marco
@@ -77,8 +74,8 @@ public class FechaIngreso {
         return edad.get();
     }
 
-    public static boolean verificar(LocalDate fecha) {
-        int edad = calcularEdad(fecha);
+    public static boolean verificar(LocalDate fecha) {//T(n) = 10
+        int edad = calcularEdad(fecha); 
         String menor = "([0-9]|1[0-7])";
         String mayor = "(9[0-9]{1,2}|1000)";
         String neg = "^-[0-9]+$";
@@ -90,7 +87,7 @@ public class FechaIngreso {
         return true;
     }
 
-    private static int calcularEdad(LocalDate fechaNacimiento) {
+    private static int calcularEdad(LocalDate fechaNacimiento) {//T(n) = 2
         LocalDate fechaActual = LocalDate.now();
         return Period.between(fechaNacimiento, fechaActual).getYears();
     }

@@ -1,12 +1,10 @@
 package Utilidades;
 
-import Docentes.Docente;
-
+import Docentes.Docente;///
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -14,43 +12,32 @@ import java.util.Scanner;
 import java.util.TreeSet;
 
 public class LDocentes {
-
     private TreeSet<Docente> Catedra;
     private TreeSet<Docente> Ocasional;
     private TreeSet<Docente> Completo;
-
-    private ArrayList<Docente> arrayCatedra;
-    private ArrayList<Docente> arrayOcasional;
-    private ArrayList<Docente> arrayCompleto;
     private String sfichero = "src/Archivos/Docentes.txt";
 
     private String[] opcionesDocentes = {"Docente de Tiempo Completo", "Docente Ocasional", "Docente de Catedra"};
 
-    public LDocentes() {
+    public LDocentes() { //T(n) = 1
         this.CargarDatos();
     }
 
     public void CargarDatos() {
-        this.arrayCatedra = new ArrayList<>();
-        this.arrayOcasional = new ArrayList<>();
-        this.arrayCompleto = new ArrayList<>();
-        Catedra = new TreeSet<>();
-        Ocasional = new TreeSet<>();
-        Completo = new TreeSet<>();
-
-        File fichero = new File(sfichero);
-        Scanner s = null;
-
+        Catedra = new TreeSet<>(); ///---1
+        Ocasional = new TreeSet<>();///---1
+        Completo = new TreeSet<>();//---1
+        File fichero = new File(sfichero);//---1
+        Scanner s = null; //---1
         try {
+            s = new Scanner(fichero);//---1
+            int op = 0;//---1
 
-            s = new Scanner(fichero);
-            int op = 0;
+            while (s.hasNextLine()) { //n+1
+                String linea = s.nextLine(); //n
+                String[] cortarString = linea.split(";");//n
 
-            while (s.hasNextLine()) {
-                String linea = s.nextLine();
-                String[] cortarString = linea.split(";");
-
-                if (cortarString.length >= 9) {
+                if (cortarString.length >= 9) {//n
                     op = Integer.parseInt(cortarString[0]);
                     Docente docente = new Docente();
                     docente.setCc(cortarString[1]);
@@ -67,25 +54,21 @@ public class LDocentes {
                     docente.setTitulo(cortarString[8]);
                     switch (op) {
                         case 1:
-                            arrayCompleto.add(docente);
                             Completo.add(docente);
                             break;
                         case 2:
-                            arrayOcasional.add(docente);
                             Ocasional.add(docente);
                             break;
                         case 3:
-                            arrayCatedra.add(docente);
                             Catedra.add(docente);
                             break;
                     }
                 }
             }
-            JOptionPane.showMessageDialog(null, "Se han cargado los datos");
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
+        } catch (Exception e) {//---1
+            e.printStackTrace();//---1
+        } finally {//---1
+            try {//---1
                 if (s != null) {
                     s.close();
                 }
@@ -93,7 +76,6 @@ public class LDocentes {
                 e2.printStackTrace();
             }
         }
-
     }
 
     public void Ingresar() {
@@ -169,20 +151,20 @@ public class LDocentes {
 
     private LocalDate fecha() {
 
-        LocalDate x = FechaIngreso.fecha();
+        LocalDate x = FechaIngreso.fecha();//----()
 
-        if (FechaIngreso.verificar(x)) {
-            JOptionPane.showMessageDialog(null, "Es mayor de edad");
+        if (FechaIngreso.verificar(x)) {  //--1
+            JOptionPane.showMessageDialog(null, "Es mayor de edad");//--1
         }
-        while (!FechaIngreso.verificar(x)) {
-            JOptionPane.showMessageDialog(null, "No esta en el rango de edad para trabajar");
-            x = FechaIngreso.fecha();
+        while (!FechaIngreso.verificar(x)) {//n+1
+            JOptionPane.showMessageDialog(null, "No esta en el rango de edad para trabajar");//n
+            x = FechaIngreso.fecha();//n
         }
-        return x;
+        return x;//---1
     }
 
-    private Docente IngresoDoc() {
-        String[] sex = {"Masculino", "Femenimno"};
+    private Docente IngresoDoc() { //T(n) = 15
+        String[] sex = {"Masculino", "Femenimno"};///-1
         String[] facultades = {"Ingenieria", "Deportes", "Comunicación", "Administracion", "Idiomas",
             "Ciencias Basicas"};
         String[] titulo = {"Pregrado", "Especialista", "maestria", "Doctorado"};
@@ -208,7 +190,7 @@ public class LDocentes {
 
     }
 
-    private String ingresoCc() {
+    private String ingresoCc() { //T(n) = 2n+4
         String regex = "^\\d+$";
         String cc = JOptionPane.showInputDialog(null, "Ingrese una cedula sin comas o puntos y solo con digitos.");
 
@@ -219,7 +201,7 @@ public class LDocentes {
         return cc;
     }
 
-    private String IngresoNombre() {
+    private String IngresoNombre() {//T(n) = 2n+4
         String nom = JOptionPane.showInputDialog(null, "Nombre completo del docente");
         String patron = "[a-zA-Z ]+";
 
@@ -230,7 +212,7 @@ public class LDocentes {
         return nom;
     }
 
-    private int IngresoAsig() {
+    private int IngresoAsig() {//T(n) = 2n+4
         String patron = "[1-9]|10";
         String asig = JOptionPane.showInputDialog(null, "Ingrese el numero de asignaturas que dicta (1-10)");
         while (!asig.matches(patron)) {
@@ -240,7 +222,7 @@ public class LDocentes {
         return Integer.parseInt(asig);
     }
 
-    private int ingresoHoras() {
+    private int ingresoHoras() {//T(n) = 2n+4
         String patron = "\\d{1,2}|20";
         String hours = JOptionPane.showInputDialog(null, "Ingrese el numero de horas que dicta (1-20)");
         while (!hours.matches(patron)) {
@@ -250,36 +232,33 @@ public class LDocentes {
         return Integer.parseInt(hours);
     }
 
-    public void mostrar(int op) {
-        String s = "";
-        switch (op) {
-            case 1:
-                s = auxMostrar(Completo, op);
-                break;
-            case 2:
-                s = auxMostrar(Ocasional, op);
-
-                break;
-            case 3:
-                s = auxMostrar(Catedra, op);
-
-                break;
-            case 4:
-                TreeSet<Docente> x = new TreeSet<>();
-                x.addAll(Catedra);
-                x.addAll(Completo);
-                x.addAll(Ocasional);
-                s = auxMostrar(x, op);
-                break;
-            default:
-                break;
-        }
-        jmostrar(s);
+    public void mostrar(int op) { //T(n) = 3m+3n+56 ||| T(n) = 18n + 56
+        String s = "";//--1
+        switch (op) {//--1
+            case 1://--1
+                s = auxMostrar(Completo, op);//T(n) = 3n+7
+                break;//--1
+            case 2://--1
+                s = auxMostrar(Ocasional, op);//T(n) = 3n+7
+                break;//--1
+            case 3://--1
+                s = auxMostrar(Catedra, op);//T(n) = 3n+7
+                break;//--1
+            case 4://--1
+                TreeSet<Docente> x = new TreeSet<>();//--1
+                x.addAll(Catedra);//3m+3
+                x.addAll(Completo);//3n+3
+                x.addAll(Ocasional);//3p+3
+                s = auxMostrar(x, "Todos los Docentes");//3b+6
+                break;//--1
+            default://--1
+                break;//--1
+        }//--1
+        jmostrar(s);//T(n) = 7
 
     }
 
-    private static String auxMostrar(TreeSet<Docente> x, int op) {
-
+    private static String auxMostrar(TreeSet<Docente> x, int op) {//T(n) = 3n+7
         String s = "";
         String[] vectDoc = {"de Tiempo Completo ", "de Catedra ", "de Ocasional ", " "};
         s += " Docentes " + vectDoc[op - 1] + "\n\n";
@@ -302,7 +281,7 @@ public class LDocentes {
 
     // Esta funcion recibe un conjunto y el titulo de el, ya sea de intersecciones o
     // no
-    private static String auxMostrar(TreeSet<Docente> x, String titleConjunto) {
+    private static String auxMostrar(TreeSet<Docente> x, String titleConjunto) {//T(n)= 3n+6
         String s = "";
         s += titleConjunto + "\n";
         s += "En total son: " + x.size() + "\n\n";
@@ -322,7 +301,7 @@ public class LDocentes {
         return s;
     }
 
-    public static void jmostrar(String s) {
+    public static void jmostrar(String s) { // T(n) = 7
         int p = 500, t = 300;
         JTextArea textArea = new JTextArea(s);
         JScrollPane scrollPane = new JScrollPane(textArea);
@@ -333,42 +312,33 @@ public class LDocentes {
 
     }
 
-    public void conjuntoExclusivo(int op) {
-        String[] vectDoc = {"Tiempo Completo solamente", "Catedra solamente", "Ocasional solamente"};
-        String s = "";
-        TreeSet<Docente> Tdocente = new TreeSet<>();
-        TreeSet<Docente> TAuxDocente = new TreeSet<>();
-        switch (op) {
-            case 1:
-                Tdocente.addAll(Catedra);
-                Tdocente.addAll(Ocasional);
-                TAuxDocente = Completo;
-                TAuxDocente.removeAll(Tdocente);
-
-                break;
-
-            case 2:
-
-                Tdocente.addAll(Completo);
-                Tdocente.addAll(Ocasional);
-                TAuxDocente = Catedra;
-                TAuxDocente.removeAll(Tdocente);
-
-                break;
-
-            case 3:
-
-                Tdocente.addAll(Completo);
-                Tdocente.addAll(Catedra);
-                TAuxDocente = Ocasional;
-                TAuxDocente.removeAll(Tdocente);
-
-                break;
-            default:
-                break;
-
-        }
-        jmostrar( auxMostrar(Catedra, vectDoc[op-1]));
+    public void conjuntoExclusivo(int op) {//T(n,b,m,p)= 3b+ 9n+9m+9p+56 || T(n) = 30n+56
+        String[] vectDoc = {"Tiempo Completo solamente", "Catedra solamente", "Ocasional solamente"};//--1
+        TreeSet<Docente> Tdocente = new TreeSet<>();//--1
+        TreeSet<Docente> TAuxDocente = new TreeSet<>();//--1
+        switch (op) {//--1
+            case 1://--1
+                Tdocente.addAll(Catedra);//--3n+3
+                Tdocente.addAll(Ocasional);//--3m+3
+                TAuxDocente = Completo;//---1
+                TAuxDocente.removeAll(Tdocente);//--3p+3
+                break; //--1
+            case 2://--1
+                Tdocente.addAll(Completo);//--3n+3
+                Tdocente.addAll(Ocasional);//--3m+3
+                TAuxDocente = Catedra;//---1
+                TAuxDocente.removeAll(Tdocente);//--3p+3
+                break;//--1
+            case 3://--1
+                Tdocente.addAll(Completo);//--3n+3
+                Tdocente.addAll(Catedra);//--3m+3
+                TAuxDocente = Ocasional;//--1
+                TAuxDocente.removeAll(Tdocente);//--3p+3
+                break;//--1
+            default://--1
+                break;//--1
+        }//--1
+        jmostrar(auxMostrar(TAuxDocente, vectDoc[op-1]));//T(b)= 3b+6 + (7) 
        
     }
 
@@ -376,7 +346,7 @@ public class LDocentes {
     private TreeSet Interseccion(TreeSet<Docente> A, TreeSet<Docente> B, TreeSet<Docente> C) {
         TreeSet<Docente> inters = new TreeSet<>(A);
         inters.retainAll(B);
-        inters.removeAll(C);
+        inters.removeAll(C); //T(n) = 6n +7
         return inters;
     }
 
