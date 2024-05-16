@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 public class Menu {
 
     @SuppressWarnings("static-access")
-    public void menu() {
+    public void menu() { //T(n)= + 3n^2 238n + 292
         LDocentes ld = new LDocentes();//---1
         int op = 0;//---1
 
@@ -31,41 +31,41 @@ public class Menu {
                     + "0.Salir.\n"));//---n
             switch (op) {//---n
                 case 1://---n
-                    menu2(ld);//---n
-                    break;
-                case 2:
-                    ld.InterseccionCompletoCatedra();
-                    break;
+                    menu2(ld);//T(n)= 90n +170
+                    break;//---n
+                case 2://---n
+                    ld.InterseccionCompletoCatedra();//13n+27
+                    break;//---n
 
-                case 3:
-                    ld.InterseccionOcCT();
-                    break;
+                case 3://---n
+                    ld.InterseccionOcCT();//13n+27
+                    break;//---n
 
-                case 4:
-                    ld.InterseccionGlobal();
-                    break;
-                case 5:
-                    ld.Contrato();
-                    break;
-                case 6:
-                    ld.Facultad(ld.Union());
-                    break;
+                case 4://---n
+                    ld.InterseccionGlobal();//11n+24
+                    break;//---n
+                case 5://---n
+                    ld.Contrato();//15n+7
+                    break;//---n
+                case 6://---n
+                    ld.Facultad(ld.Union());//3n^2+12n+11
+                    break;//---n
 
-                case 7:
-                    ld.Ingresar();
-                    break;
+                case 7://---n
+                    ld.Ingresar();//45n+8
+                    break;//---n
 
-                case 8:
-                    ld.Titulo(ld.Union());
-                    break;
+                case 8://---n
+                    ld.Titulo(ld.Union());//7n+11 + 6n+4
+                    break;//---n
                     
-                case 0:
-                    JOptionPane.showMessageDialog(null, "Gracias por confiar en nosotros...\n");
-                    break;
+                case 0://---n
+                    JOptionPane.showMessageDialog(null, "Gracias por confiar en nosotros...\n");//---n
+                    break;//---n
 
-                default:
-                    JOptionPane.showMessageDialog(null, "Digite correctamente la opcion\n");
-                    break;
+                default://---n
+                    JOptionPane.showMessageDialog(null, "Digite correctamente la opcion\n");//---n
+                    break;//---n
             }
 
         } while (op != 0);
